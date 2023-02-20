@@ -22,7 +22,7 @@ datasource db {
 model User {
   id             String          @id @default(uuid())
   name           String
-  age            Int
+  age            Int?
   email          String          @unique
   role           Role            @default(USER)
   preferences    Json
@@ -30,7 +30,7 @@ model User {
   writtenPosts   Post[]          @relation("Written")
   // many-to-many relationship
   favoritePosts  Post[]          @relation("Favorite")
-  UserPreference UserPreference?
+  userPreference UserPreference?
 
   // Block level attributes: starting with double @@
   @@unique([name, age, email]) // means the combination of these 3 should be unique, no 2 user can of the same these 3 fields
